@@ -1,0 +1,51 @@
+<div style="margin:auto;width: 700px;">
+  <h2 [style.color]="iscolor?'blue':''" style="margin-left: 150px;">Fake Api,Pagination&Toastr</h2>
+</div>
+<table style="margin: auto;width: 1200px;">
+  <tr>
+    <td>
+      <ul>
+        <li>
+          <a routerLinkActive="active" routerLink="bill-list" href="#">Billing</a>
+        </li>
+
+        <li>
+          <a routerLinkActive="active" routerLink="department-list" href="#">Department</a>
+        </li>
+
+        <li>
+          <a routerLinkActive="active" routerLink="report" href="#">Reports</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="signinform" href="#">SigninForm</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="postlist" href="#">Posts</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="todolist" href="#">Todos</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="userlist" href="#">APIUser</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="login" href="#">LogIn</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="alubumlist" href="#">Albums</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="commentlist" href="#">Comments</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="parent">Parent</a>
+        </li>
+
+        <li>
+          <a (click)="logout()" href="#">LogOut</a>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<router-outlet></router-outlet>

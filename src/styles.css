@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+.active{
+    background-color:blueviolet;  
+}
+.style{
+ width: 1200px;
+ margin: auto;
+}
+.form-control.ng-touched.ng-invalid{
+    border: 2px solid red;
+}
+.alert1 {
+    position: relative;
+    padding: 4px 4px;
+    margin-bottom: 2px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+.border{
+    color: red;
+    font-family:inherit;
+}

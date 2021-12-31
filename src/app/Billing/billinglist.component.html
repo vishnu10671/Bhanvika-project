@@ -1,0 +1,95 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button (click)="addDetails()" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpbill">
+            Add Bills
+        </button>
+    </div>
+    <!--List-->
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th>#BillNumber</th>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor="let list of billlist;index as i" class="table-success ">
+                    <td>
+                        {{list.Id}}
+                    </td>
+                    <td>
+                        {{list.Item}}
+                    </td>
+                    <td>
+                        {{list.Amount}}
+                    </td>
+                    <td>
+                        <button class="btn btn-info"><a [routerLink]="['/bill-list',list.Id]"><i class="fa fa-eye"
+                                    aria-hidden="true"></i></a></button>&nbsp;
+                        <button (click)="editBilllDetails(i,list)" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#mpbill"><i class="fas fa-edit"></i></button>&nbsp;
+                        <button (click)=" deleteBill(i)" class="btn btn-danger"><i
+                                class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+
+            </thead>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="mpbill" tabindex="-1" aria-labelledby="billModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="bilingform" (ngSubmit)="saveDetails()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="billModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmessage" class="alert alert-success" role="alert">
+                                {{ alertmessage}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtItem">
+                                Item
+                            </label>
+                            <input [(ngModel)]="formdata.Item" formControlName="billitem" type="text"
+                                class="form-control" placeholder="Enter Item" id="txtItem">
+                            <div *ngIf=item.touched&&item.invalid class="border">
+                                <div *ngIf=item.errors.required>
+                                    Please Enter Item
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtAmount">
+                                Amount
+                            </label>
+                            <input [(ngModel)]="formdata.Amount" formControlName="billamount" type="number"
+                                class="form-control" placeholder="Enter Amount" id="txtAmount">
+                            <div *ngIf=amount.touched&&amount.invalid class='border'>
+                                <div *ngIf=amount.errors.required>
+                                    Plese Enter Amount
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="bilingform.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

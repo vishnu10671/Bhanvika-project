@@ -1,0 +1,109 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button (click)="adddeatails()" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpjob">
+            Add job
+        </button>
+    </div>
+    <!--List-->
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th>#Id</th>
+                    <th>Employee</th>
+                    <th>Location</th>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor="let job of joblist;index as i" class="table-success ">
+                    <td>
+                        {{job.Id}}
+                    </td>
+                    <td>
+                        {{job.Employee}}
+                    </td>
+                    <td>
+                        {{job.Designation}}
+                    </td>
+                    <td>
+                        {{job.Salary}}
+                    </td>
+                    <td>
+                        <button [routerLink]="['/joblist',job.Id]" class="btn btn-info"><a><i class="fa fa-eye"
+                                    aria-hidden="true"></i></a></button>&nbsp;
+                        <button (click)="editDetails(i,job)" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#mpjob"><i class="fas fa-edit"></i></button>&nbsp;
+                        <button (click)="delete(i)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="mpjob" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="jobform" (ngSubmit)="saveJobdeatils()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="jobModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmessage" class="alert alert-success" role="alert">
+                                {{ alertmessage}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtemployee">
+                                Employee
+                            </label>
+                            <input [(ngModel)]="jobmodel.Employee" formControlName="employee" type="text"
+                                class="form-control" placeholder="Enter Employee" id="txtemployee">
+                            <div *ngIf=Employee.touched&&Employee.invalid class="border">
+                                <div *ngIf=Employee.errors.required>
+                                    Please Enter Employee
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtdisgnation">
+                                Designation
+                            </label>
+                            <input [(ngModel)]="jobmodel.Designation" formControlName="disgnation" type="text"
+                                class="form-control" placeholder="Enter Amount" id="txtdisgnation">
+                            <div *ngIf=Disgnation.touched&&Disgnation.invalid class='border'>
+                                <div *ngIf=Disgnation.errors.required>
+                                    Plese Enter Disgnation
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtsalary">
+                                Salary
+                            </label>
+                            <input [(ngModel)]="jobmodel.Salary" formControlName="salary" type="number"
+                                class="form-control" placeholder="Enter Amount" id="txtsalary">
+                            <div *ngIf=Salary.touched&&Salary.invalid class='border'>
+                                <div *ngIf=Salary.errors.required>
+                                    Plese Enter Salary
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="jobform.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

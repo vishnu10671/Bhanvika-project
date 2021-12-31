@@ -1,0 +1,34 @@
+<div class=" card style">
+    <div class="card text-center">
+        <div class="card-body">
+            <table class="table">
+                <thead class="table-info">
+                    <tr>
+                        <th>
+                            #Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Mobile
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-danger">
+                    <tr *ngFor="let user of listuser">
+                        <td>{{user.Id}}</td>
+                        <td>{{user.Name}}</td>
+                        <td>{{user.Mobile}}</td>
+                        <td><a [routerLink]="['/user',user.Id]" title="Click me view"><i
+                                    class="fas fa-house-user"></i></a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>

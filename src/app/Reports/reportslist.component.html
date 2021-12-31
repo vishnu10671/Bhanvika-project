@@ -1,0 +1,103 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button type="button" (click)="addreportDetails()" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpreport">
+            Add Report
+        </button>
+    </div>
+    <div class="card text-center">
+        <div class="card-body">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>
+                            #Id
+                        </th>
+                        <th>
+                            Product
+                        </th>
+                        <th>
+                            Distributor
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-danger">
+                    <tr *ngFor="let list of reportlist;index as i">
+                        <td>{{list.Id}}</td>
+                        <td>{{list.Product}}</td>
+                        <td>{{list.Distributor}}</td>
+
+                        <td>
+                            <button [routerLink]="['/report',list.Id]" class="btn btn-info"><i
+                                    class="fa fa-eye"></i></button>&nbsp;
+                            <button (click)=" editrepotDetails(i,list)" data-bs-toggle="modal"
+                                data-bs-target="#mpreport" class="btn btn-success"><i
+                                    class="fas fa-edit"></i></button>&nbsp;
+                            <button (click)="deletereport(i)" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- model -->
+    <div class="modal fade" id="mpreport" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="reportForm" (ngSubmit)="savereportDetails()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmesage" class="alert alert-success" role="alert">
+                                {{alertmesage}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtProduct">
+                                Product
+                            </label>
+                            <input [(ngModel)]="reportdata.Product" formControlName="productName" type="text"
+                                class="form-control" placeholder="Enter product" id="txtProduct">
+                            <div *ngIf=product.touched&&product.invalid class='border'>
+                                <div *ngIf=product.errors.required>
+                                    Please Enter Product
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtdistributor">
+                                Distributor
+                            </label>
+                            <input [(ngModel)]="reportdata.Distributor" formControlName="distributorName" type="text"
+                                class="form-control" placeholder="Enter Distributor" id="txtdistributor">
+                            <div *ngIf=distributor.touched&&distributor.invalid class='border'>
+                                <div *ngIf=distributor.errors.required>
+                                    Please Enter Distributor
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="reportForm.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

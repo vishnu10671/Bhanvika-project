@@ -1,0 +1,110 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button type="button" (click)="addTodoDetails()" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mptodo">
+            Add Todo
+        </button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>#Id</th>
+                <th>UserId</th>
+                <th>Title</th>
+                <th>Completed</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngFor="let todo of todelist|paginate:{itemsPerPage:5,currentPage:defaultPage};index as i"
+                class="table-success ">
+                <td>
+                    {{todo.id}}
+                </td>
+                <td>
+                    {{todo.userId}}
+                </td>
+                <td>
+                    {{todo.title}}
+                </td>
+                <td>
+                    {{todo.completed}}
+                </td>
+                <td>
+                    <button [routerLink]="['/todolist',todo.id]" class="btn btn-info"><i
+                            class="fa fa-eye"></i></button>&nbsp;
+                    <button (click)="editDetails(i,todo)" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#mptodo"><i class="fas fa-edit"></i></button>&nbsp;
+                    <button (click)="delete(todo.id,i)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;background-color:lightsteelblue;" colspan="5">
+                    <pagination-controls (pageChange)="defaultPage= $event"></pagination-controls>
+                </td>
+            </tr>
+        </thead>
+    </table>
+    <!-- model -->
+    <div class="modal fade" id="mptodo" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="todoForm" (ngSubmit)="saveDetails()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportModalLabel">
+                            {{titleName}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmessage" class="alert alert-success" role="alert">
+                                {{alertmessage}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txttitle">
+                                title
+                            </label>
+                            <input [(ngModel)]="tode.title" formControlName="title" type="text" class="form-control"
+                                placeholder="Enter product" id="txttitle">
+                            <div *ngIf="title.touched&&title.invalid " class='border'>
+                                <div *ngIf="title.errors.required">
+                                    Please Enter title
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtuserid">
+                                UserId
+                            </label>
+                            <input [(ngModel)]="tode.userId" formControlName="userId" type="text" class="form-control"
+                                placeholder="Enter status" id="txtuserid">
+
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <div class="form-check">
+                                <input [(ngModel)]="tode.completed" formControlName="completed" class="form-check-input"
+                                    type="checkbox" value="1" id="txtchckbx">
+                                <label class="form-check-label" for="txtchckbx">
+                                    Completed
+                                </label>
+                            </div>
+                            <div *ngIf="complete.touched&&complete.invalid " class='border'>
+                                <div *ngIf="complete.errors.required">
+                                    Please Enter complete
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="todoForm.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

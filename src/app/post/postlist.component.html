@@ -1,0 +1,20 @@
+<div class=" card style" style="background-color:lightpink;">
+    <div class="mb-3">
+        <input type="text" [(ngModel)]="post.title" class="form-control" id="txtinput" placeholder="Enter input">
+        <button (click)="addPost()" class="btn btn-primary" type="submit">Add</button>
+    </div>
+    <ul *ngFor="let post of posts| paginate: { itemsPerPage: 5, currentPage: defaultPage};index as i">
+        <li>
+            {{post.title}}
+            <button class="btn btn-info"><a [routerLink]="['/postlist',post.id]"><i
+                        class="fa fa-eye"></i></a></button>&nbsp;
+            <button class="btn btn-success"><i class="fas fa-edit"></i></button>&nbsp;
+            <button (click)="deletePost(post.id,i)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+        </li>
+
+    </ul>
+    <div style="text-align: center;background-color:lightyellow;">
+        <pagination-controls (pageChange)="defaultPage= $event"></pagination-controls>
+    </div>
+</div>

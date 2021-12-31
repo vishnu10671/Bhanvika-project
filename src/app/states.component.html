@@ -1,0 +1,86 @@
+<div style="font-family: Fantasy;">
+    <div style="width:1250px;height:50px; background-color: cornflowerblue;text-align: center;color: crimson;">
+        <h2>Indian facts</h2>
+    </div>
+
+    <div style="color:red ;">
+        <ul>
+            <h3>List of States</h3>
+            <li *ngFor='let state of  States'>
+                {{state}}
+            </li>
+        </ul>
+
+    </div>
+    <div style="color: navy;" *ngIf="States.length>0">
+        <h4>Different States And Famous Places</h4>
+
+        <table style="width:600px;height: 180px;" class="table-success">
+            <tr class="table-success">
+                <th class="table-success">Telangana </th>
+                <td class="table-success">
+                    <img [src]="imgurl" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+                <th class="table-success">Andrapradesh </th>
+                <td class="table-success">
+                    <img [src]="imgurl2" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+                <th class="table-success">Karnataka</th>
+                <td class="table-success">
+                    <img [src]="imgurl3" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+                <th class="table-success">Tamilnadu</th>
+                <td class="table-success">
+                    <img [src]="imgurl4" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+            </tr>
+        </table>
+
+    </div>
+    <div style="color: midnightblue;" [hidden]="States.length!==0">
+
+        <h4>About India</h4>
+        <p>India, country that occupies the greater part of South Asia. Its capital is New Delhi, built in the 20th
+            century
+            just south of the historic hub of Old Delhi to serve as India’s administrative centre. Its government is a
+            constitutional republic that represents a highly diverse population consisting of thousands of ethnic groups
+            and
+            likely hundreds of languages. With roughly one-sixth of the world’s total population, India is the second
+            most
+            populous country, after China.</p>
+
+    </div>
+    <div style="color: orangered;" *ngIf="States.length==0">
+        <h4> Cricket Teams</h4>
+
+        <table style="width:600px;height: 180px;" class="table-success">
+            <tr class="table-success">
+                <th class="table-success">India </th>
+                <td class="table-success">
+                    <img [src]="imgurl5" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+                <th class="table-success">Australia</th>
+                <td class="table-success">
+                    <img [src]="imgurl6" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+                <th class="table-success">southAfrica</th>
+                <td class="table-success">
+                    <img [src]="imgurl7" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+                <th class="table-success">England</th>
+                <td class="table-success">
+                    <img [src]="imgurl8" style="width: 200px;height: 80px;">
+                </td>
+                <th class="table-success"></th>
+            </tr>
+        </table>
+
+    </div>
+</div>

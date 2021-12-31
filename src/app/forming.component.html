@@ -1,0 +1,125 @@
+<div [ngClass]="{
+            'heading'   : isbaground,
+            'class2'    : isstyle
+        }">
+    <button (click)="agritypes()" type="button" class="btn btn-info">Agri</button>
+
+    <h3> {{name|uppercase}}</h3>
+</div>
+<div *ngIf="organic">
+    <div [ngClass]="{
+            'subdv':3==3,
+            'subtitle': isstyle
+        }">
+        <h4 [style.color]="3==3?'green':''">{{sub}}</h4>
+        <table>
+            <tr>
+                <td>
+                    <ol>
+                        <li>
+                            The whole family works on the farm
+                        </li>
+                        <li>
+                            Most of the work is done manually
+                        </li>
+                        <li>
+                            Tradition methods of farming are followed
+                        </li>
+                        <li>
+                            Most of the yield is consumed by the family with very little surplus
+                        </li>
+
+                    </ol>
+                </td>
+                <td>
+                    <img [src]="imgurl" [ngStyle]="{
+                        
+                        'width':3==3?'250px':'',
+                        'height':iscondition?'100px':'',
+                        'margin-left':2==2?'100px':''
+                        }">
+                </td>
+            </tr>
+        </table>
+        <div [ngClass]="
+            {
+            'shift' :3==3,
+            'shiftdv':iscondition
+            }
+            ">
+            <table>
+                <h4 [style.color]=" isstyle?'gold':''">{{ shift}}</h4>
+                <tr>
+
+                    <td>
+                        <ol>
+                            <li>
+                                The farmers then move to new areas and the process is repeated
+                            </li>
+                            <li>
+                                first of all a piece of forest land is cleared by burning of trunks and
+                                branches.
+                            </li>
+                            <li>
+                                Dry paddy, maize, millets and vegetables are the crops
+                            </li>
+
+
+                        </ol>
+                    </td>
+
+                    <td>
+                        <img [src]="imgurl2" [ngStyle]="{
+                                
+                                'width':iscondition?'250px':'',
+                                'height':iscondition?'100px':'',
+                                'margin-left':iscondition?'80px':'',
+                                'margin-top':iscondition?'0px':''
+                                }">
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div [ngClass]="{
+            'plant':1==1,
+            'plantdv':iscondition 
+            }">
+            <h4 [style.color]="1==1?'#330000':''">{{plant}}</h4>
+            <table>
+                <tr>
+                    <td>
+                        <ol>
+                            <li>
+                                It is a single crop farming of rubber, tea, coffee,spices
+                            </li>
+                            <li>
+                                Plantation agriculture is confined within tropical areas
+                            </li>
+                            <li>
+                                Plantation agriculture is an export-oriented agriculture
+                            </li>
+
+
+                        </ol>
+                    </td>
+                    <td>
+                        <img [src]="imgurl3" [ngStyle]="{
+                        
+                        'width':3==3?'250px':'',
+                        'height':iscondition?'100px':'',
+                        'margin-left':2==2?'170px':''
+                        }">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="2==2" [style.marginleft]="2==2?'170px':''">
+        <h3 [style.color]="3==3?'blue':''">
+            Crop Cycle
+        </h3>
+        <img [ngClass]="{
+            'crop':3==3
+        }" [src]="imgurl4">
+    </div>

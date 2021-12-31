@@ -1,0 +1,111 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button (click)=" addDetails()" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpuser">
+            Add User
+        </button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngFor="let user of ApiUserlist|paginate:{itemsPerPage:5,currentPage:defaultPage};index as i"
+                class="table-success ">
+
+                <td>
+                    {{user.name| summery:15}}
+                </td>
+                <td>
+                    {{user.email}}
+                </td>
+                <td>
+                    {{user.phone}}
+                </td>
+                <td>
+                    <button [routerLink]="['/userlist',user.id]" class="btn btn-info"><i class="fa fa-eye"
+                            aria-hidden="true"></i></button>&nbsp;
+                    <button (click)="editDetails(user)" data-bs-toggle="modal" data-bs-target="#mpuser"
+                        class="btn btn-success"><i class="fas fa-edit"></i></button>&nbsp;
+                    <button (click)="Deleteuser(user.id,i)" class="btn btn-danger"><i
+                            class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;background-color: mediumaquamarine;" colspan="4">
+                    <pagination-controls (pageChange)="defaultPage= $event"></pagination-controls>
+                </td>
+            </tr>
+        </thead>
+    </table>
+    <!-- model -->
+    <div class="modal fade" id="mpuser" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="userForm" (ngSubmit)="saveUserDetails()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="userModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmessage" class="alert alert-success" role="alert">
+                                {{alertmessage}}
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtname">
+                                Name
+                            </label>
+                            <input [(ngModel)]="Apiuser.name" formControlName="name" type="text" class="form-control"
+                                placeholder="Enter Name" id="txtname">
+                            <div *ngIf=Name.touched&&Name.invalid class='border'>
+                                <div *ngIf=Name.errors.required>
+                                    Please Enter Name
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtemail">
+                                Email
+                            </label>
+                            <input [(ngModel)]="Apiuser.email" formControlName="email" type="text" class="form-control"
+                                placeholder="Enter Email" id="txtemail">
+                            <div *ngIf="Email.touched&&Email.invalid " class='border'>
+                                <div *ngIf="Email.errors.required">
+                                    Please Enter Email
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtphone">
+                                Phone Number
+                            </label>
+                            <input [(ngModel)]="Apiuser.phone" formControlName="phone" type="text" class="form-control"
+                                placeholder="Enter phone" id="txtphone">
+                            <div *ngIf="Phone.touched&&Phone.invalid " class='border'>
+                                <div *ngIf="Phone.errors.required">
+                                    Please Enter phone number
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

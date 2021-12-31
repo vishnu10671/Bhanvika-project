@@ -1,0 +1,93 @@
+<div class=" card style">
+    <div style="margin-left:1050px;">
+        <button (click)="Addcomment()" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpComment">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add Dept
+        </button>
+    </div>
+    <!--List-->
+    <div>
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th>#Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor="let comnt of CommentsList|paginate:{itemsPerPage:6,currentPage:defaultpage};index as i"
+                    class="table-success ">
+                    <td>
+                        {{comnt.id}}
+                    </td>
+                    <td>
+                        {{comnt.name}}
+                    </td>
+                    <td>
+                        {{comnt.email}}
+                    </td>
+
+                    <td>
+                        <button [routerLink]="['/commentlist',comnt.id]" class="btn btn-warning"><a><i class="fa fa-eye"
+                                    aria-hidden="true"></i></a></button>&nbsp;
+                        <button (click)="editComment(comnt)" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#mpComment"><i class="fas fa-edit"></i></button>&nbsp;
+                        <button (click)="delete(i,comnt.id)" class="btn btn-danger"><i
+                                class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;background-color:lightseagreen;" colspan="4">
+                        <pagination-controls (pageChange)="defaultpage= $event"></pagination-controls>
+                    </td>
+                </tr>
+
+            </thead>
+        </table>
+    </div>
+    <div class="modal fade" id="mpComment" tabindex="-1" aria-labelledby="mpCommentsModalLabel" aria-hidden="true"
+        style="font-family: cursive;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="commentForm" (ngSubmit)='saveCommentsDetails()'>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mpCommentsModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtname">
+                                Name
+                            </label>
+                            <input [(ngModel)]="commentadata.name" formControlName="name" type="text"
+                                class="form-control" placeholder="Enter Name" id="txtname">
+                            <div *ngIf=Name.touched&&Name.invalid class="border">
+                                <div *ngIf=Name.errors.required>
+                                    Please Enter Name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtemail">
+                                Email
+                            </label>
+                            <textarea [(ngModel)]="commentadata.email" formControlName="email" class="form-control"
+                                placeholder="Enter Description" id="txtemail"></textarea>
+                            <div *ngIf=Email.touched&&Email.invalid class='border'>
+                                <div *ngIf=Email.errors.required>
+                                    Plese Enter Email
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="commentForm.invalid" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

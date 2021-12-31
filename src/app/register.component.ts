@@ -1,0 +1,12 @@
+import { Component } from "@angular/core";
+
+@Component({
+    selector: 'register',
+    templateUrl: './register.component.html'
+})
+
+
+export class RegisterComponent {
+    registation = "Registation Here";
+    istrue: boolean = true
+}

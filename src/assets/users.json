@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "first_name": "Sebastian",
+        "last_name": "Eschweiler",
+        "email": "sebastian@javatpoint.com"
+    },
+    {
+        "id": 2,
+        "first_name": "Steve",
+        "last_name": "Palmer",
+        "email": "steve@javatpoint.com"
+    },
+    {
+        "id": 3,
+        "first_name": "Ann",
+        "last_name": "Smith",
+        "email": "ann@javatpoint.com"
+    },
+    {
+        "id": 4,
+        "first_name": "Nishitha",
+        "last_name": "Jadi",
+        "email": "nishitha@javatpoint.com"
+    },
+    {
+        "id": 5,
+        "first_name": "Vyshnavi",
+        "last_name": "Jadi",
+        "email": "vyshnavi@javatpoint.com"
+    }
+]

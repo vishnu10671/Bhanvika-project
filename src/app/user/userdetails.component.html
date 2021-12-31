@@ -1,0 +1,24 @@
+<div class=" card style">
+    <div class="card text-center">
+        <div class="card-header">
+            User Details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Name:{{usermodel.name}}</h5>
+            <p class="card-text">UserName:{{usermodel.username}}</p>
+            <p class="card-text">Website:{{usermodel.website}}</p>
+            <p class="card-text">Address:{{usermodel.address.street}},
+                Suit: {{usermodel.address.suite}},
+                city: {{usermodel.address.city}},
+                zipcode: {{usermodel.address.zipcode}}
+            </p>
+            <p class="card-text">
+                Name:{{usermodel.company.name}},
+                catchPhrase:{{usermodel.company.catchPhrase}},
+                Bs: {{usermodel.company.bs}}
+            </p>
+
+            <p class="card-text">Email:{{usermodel.email}}</p>
+        </div>
+    </div>
+</div>

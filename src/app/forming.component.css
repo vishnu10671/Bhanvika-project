@@ -1,0 +1,35 @@
+.heading{
+  width: 1250px;
+  height:80px;
+  background-color: chartreuse;
+}
+.class2{
+    text-align: center;
+    text-shadow: 3px 2px red;
+    font-family:cursive ;
+}
+.subtitle{
+  color:tomato;
+  font-family: cursive;
+ 
+}
+.subdv{
+  margin-left: 100px;
+}
+.shift{
+  color: blue;
+}
+.shiftdv{
+  font-size: 14px;
+}
+.plant{
+  color: darkmagenta;
+}
+.plantdv{
+  font-family: cursive;
+}
+.crop{
+  width: 800px;
+  height: 500px;
+  margin-left: 100px;
+}

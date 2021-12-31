@@ -1,0 +1,86 @@
+<div class=" card style">
+    <div
+        style="width: 500px; height: auto;border: 2px solid green;margin-left: 350px;padding-left: 60px;background-color: lightgreen;">
+        <h2 style="width: 400px;margin-left: 60px;color: orangered;"> Contact Form</h2>
+        <form #contactform="ngForm">
+            <div class="col-md-10">
+                <label for="txtFrstname" class="form-label">User Name</label>
+                <input type="text" minlength="6" class="form-control" id="txtFrstname" ngModel #txtFrstname="ngModel"
+                    name="txtFrstname" required>
+                <div *ngIf="txtFrstname.touched&&txtFrstname.errors">
+                    <div *ngIf="txtFrstname.errors.required" class="alert1 alert-danger">
+                        username is Required
+                    </div>
+                    <div *ngIf=txtFrstname.errors.minlength class="alert1 alert-danger">
+                        must enter 5 letters
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <label for="txtemail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtemail" ngModel name="txtemail" #txtemail="ngModel"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <div *ngIf="txtemail.touched&&txtemail.errors" class="alert1 alert-danger">
+                    <div *ngIf="txtemail.errors.pattern">
+                        please enter valid Email
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <label for="txtdob" class="form-label">Date of Birth</label>
+                <input type="text" class="form-control" id="txtdob" ngModel name="txtdob" #txtdob="ngModel"
+                    pattern="(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]\d{4}">
+                <div *ngIf="txtdob.touched&&txtdob.errors" class="alert1 alert-danger">
+                    <div *ngIf="txtdob.errors.pattern">
+                        please enter valid Date of Birth
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <label for="txtmobile" class="form-label">Mobile Number</label>
+                <input type="text" class="form-control" ngModel name="txtmobile" #txtmobile="ngModel" id="txtmobile"
+                    pattern="[1-9]{1}[0-9]{9}" />
+                <div *ngIf=txtmobile.touched&&txtmobile.errors>
+                    <div *ngIf=txtmobile.errors.pattern class="alert1 alert-danger">
+                        enter valid mobilenumber
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10">
+                <label class="form-label">Comments</label>
+                <textarea id="textarea" minlength="10" ngModel name="textarea" #textarea="ngModel" class="form-control"
+                    rows="1" cols="5"></textarea>
+                <div *ngIf=textarea.touched&&textarea.errors>
+                    <div *ngIf=textarea.errors.minlength class="alert1 alert-danger">
+                        enter minimum 10 characters
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <label for="gender">Geneder </label><br>
+                    <input type="radio" value="male" id="gender" #gender="ngModel" ngModel name="gender" checked> Male
+                    <input type="radio" value="female" id="gender" #gender="ngModel" ngModel name="gender" checked>
+                    Female
+
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="chktermcondition" ngModel
+                        name="chktermcondition" required>
+                    <label class="form-check-label" for="chktermcondition">
+                        Terms and Condition
+                    </label>
+
+                </div>
+
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" [disabled]="!contactform.valid">
+                Submit</button>
+        </form>
+        <p>
+            {{contactform.value | json }}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button (click)="addCricketer()" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpcricket">
+            Add job
+        </button>
+    </div>
+    <!--List-->
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th>#Id</th>
+                    <th>Name</th>
+                    <th>Born</th>
+                    <th>Runs</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor="let cricket of cricketersList;index as i" class="table-success ">
+                    <td>
+                        {{cricket.Id}}
+                    </td>
+                    <td>
+                        {{cricket.Name}}
+                    </td>
+                    <td>
+                        {{cricket.Born}}
+                    </td>
+                    <td>
+                        {{cricket.Runs}}
+                    </td>
+                    <td>
+                        <button [routerLink]="['/cricketerslist',cricket.Id]" class="btn btn-info"><a><i
+                                    class="fa fa-eye" aria-hidden="true"></i></a></button>&nbsp;
+                        <button (click)="editCricketers(i,cricket)" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#mpcricket"><i class="fas fa-edit"></i></button>&nbsp;
+                        <button (click)="delete(i)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="mpcricket" tabindex="-1" aria-labelledby="cricketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="cricketForm" (ngSubmit)=" saveCricketersDetails()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="jobModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmessage" class="alert alert-success" role="alert">
+                                {{alertmessage}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtcriname">
+                                Name
+                            </label>
+                            <input [(ngModel)]="cricketersdata.Name" formControlName="name" type="text"
+                                class="form-control" placeholder="Enter Cricketer" id="txtname">
+                            <div *ngIf=Name.touched&&Name.invalid class="border">
+                                <div *ngIf=Name.errors.required>
+                                    Please Enter Cricketer
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtburn">
+                                Born
+                            </label>
+                            <input [(ngModel)]="cricketersdata.Born" formControlName="born" type="text"
+                                class="form-control" placeholder="Enter Born" id="txtburn">
+                            <div *ngIf=Born.touched&&Born.invalid class='border'>
+                                <div *ngIf=Born.errors.required>
+                                    Plese Enter Born
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtruns">
+                                Runs
+                            </label>
+                            <input [(ngModel)]="cricketersdata.Runs" formControlName="runs" type="number"
+                                class="form-control" placeholder="Enter Runs" id="txtruns">
+                            <div *ngIf=Runs.touched&&Runs.invalid class='border'>
+                                <div *ngIf=Runs.errors.required>
+                                    Plese Enter Runs
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="cricketForm.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

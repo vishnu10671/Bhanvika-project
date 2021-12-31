@@ -1,0 +1,54 @@
+<div class=" card style">
+
+    <table style="font-family: cursive;">
+        <tr>
+            <td [attr.colspan]="col">
+                <div style="width:1200px;height: 70px;background-color:deeppink;text-align: center; color:blue;">
+                    <h2>{{title|uppercase}}</h2>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+
+                <div style="width:500px;height:360px;margin-left: 400px; border: 2px solid brown;border-radius: 40px;">
+                    <h3 style="text-align: center;">{{name|uppercase}}</h3>
+                    <form [formGroup]="loginform" class=" px-4 py-3">
+                        <div class="mb-3">
+                            <label class="form-label">Employee</label>
+                            <input [(ngModel)]="loginmodel.username" formControlName="employee" type="text"
+                                class="form-control" name="employee">
+                            <div *ngIf="Employee.touched&&Employee.invalid" class="border">
+                                <div *ngIf="Employee.errors.pattern">
+                                    Enter Valid Pattern
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input [(ngModel)]="loginmodel.password" formControlName="password" type="text"
+                                name="password" class="form-control">
+                            <div *ngIf="Password.touched&&Password.invalid" class="border">
+                                <div *ngIf="Password.errors.required">
+                                    Enter Valid Pattern
+                                </div>
+                            </div>
+                        </div>
+
+                        <button (click)="login()" type="submit" class="btn btn-primary">Login</button>
+                    </form>
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td [attr.colspan]="col">
+                <div style="width:1200px;height: 70px;background-color: gold;text-align: center; color: green;">
+                    <h3> All copy rights reserved @BHEL</h3>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

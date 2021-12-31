@@ -1,0 +1,108 @@
+<div class=" card style">
+    <div style="text-align: right;padding-top: 5px;">
+        <!-- Button trigger modal -->
+        <button type="button" (click)="addAlubum()" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#mpalubum">
+            AddAlbum
+        </button>
+    </div>
+    <div class="card text-center">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>
+                            #Id
+                        </th>
+                        <th>
+                            UserId
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-info">
+                    <tr
+                        *ngFor="let album of  alubumList| paginate: { itemsPerPage: 5, currentPage: defaultPage};index as i">
+                        <td>{{album.id}}</td>
+                        <td>{{album.userId}}</td>
+                        <td>{{album.title}}</td>
+
+                        <td>
+                            <button [routerLink]="['/alubumlist',album.id]" class="btn btn-info"><i
+                                    class="fa fa-eye"></i></button>&nbsp;
+                            <button (click)="editAlbum(album)" data-bs-toggle="modal" data-bs-target="#mpalubum"
+                                class="btn btn-success"><i class="fas fa-edit"></i></button>&nbsp;
+                            <button (click)="deleteAlubum(album.id,i)" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;background-color:lightpink;" colspan="4">
+                            <pagination-controls (pageChange)="defaultPage= $event"></pagination-controls>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- model -->
+    <div class="modal fade" id="mpalubum" tabindex="-1" aria-labelledby="alubumModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="alubumForm" (ngSubmit)="saveAlbumDetails()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="alubumModalLabel">
+                            {{title}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" style="text-align: left;">
+                            <div *ngIf="alertmesage" class="alert alert-success" role="alert">
+                                {{alertmesage}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txtuserid">
+                                UserId
+                            </label>
+                            <input [(ngModel)]="alubum.userId" formControlName="userid" type="number"
+                                class="form-control" placeholder="Enter Userid" id="txtuserid">
+                            <div *ngIf=Userid.touched&&Userid.invalid class='border'>
+                                <div *ngIf=Userid.errors.required>
+                                    Please Enter Userid
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3" style="text-align: left;">
+                            <label class="form-label" for="txttitle">
+                                Title
+                            </label>
+                            <input [(ngModel)]="alubum.title" formControlName="title" type="text" class="form-control"
+                                placeholder="Enter Title" id="txttitle">
+                            <div *ngIf=Title.touched&&Title.invalid class='border'>
+                                <div *ngIf=Title.errors.required>
+                                    Please Enter Title
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" [disabled]="alubumForm.invalid" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
